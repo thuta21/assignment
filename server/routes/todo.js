@@ -1,5 +1,4 @@
 import express from 'express'
-import Todo from '../models/Todo.js';
 import TodoController from '../controllers/TodoController.js';
 
 const router = express.Router()
@@ -15,5 +14,7 @@ router.get('/todo/:id', TodoController.show);
 router.post('/todos', TodoController.create);
 
 router.delete('/todo/:id', TodoController.destroy);
+
+router.put('/todo/:id/status', TodoController.statusUpdate);
 
 export default router
