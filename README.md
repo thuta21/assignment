@@ -6,7 +6,7 @@
    - Ensure you have MySQL installed and running.
    - Create a new database for your project. For example:
      ```sql
-     CREATE DATABASE library_db;
+     CREATE DATABASE todo;
      ```
 
 2. **Install Dependencies:**
