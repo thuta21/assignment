@@ -1,12 +1,24 @@
-Firstly, I seperated a project into 2 parts. Server and Client.
+# Project Setup
 
-Server Folder ( REST API using Node and express.js )
+## Server Folder (REST API using Node and Express.js)
 
- - create a mysql database
- - npm install
- - npm run start
+1. **Create a MySQL Database:**
+   - Ensure you have MySQL installed and running.
+   - Create a new database for your project. For example:
+     ```sql
+     CREATE DATABASE library_db;
+     ```
 
-Client Folder ( React.js )
+2. **Install Dependencies:**
+   ```bash
+   cd server
+   npm install
+   npm start
 
- - npm install
- - npm run dev 
+## Client Folder (Reactjs)
+
+1. **Install Dependencies:**
+   ```bash
+   cd client
+   npm install
+   npm run dev
