@@ -1,6 +1,10 @@
+import Navigation from './Nav';
+
 const Hero = () => {
   return (
-    <div className='bg-[#000300] text-white'> {/* Changed to white text for contrast */}
+    <div>
+      <Navigation />
+      <div className='bg-[#000300] text-white'> {/* Changed to white text for contrast */}
       <div className='w-full h-screen mx-auto text-center flex flex-col justify-center'>
         <p className='text-[#00df9a] font-bold p-2'>
           This platform helps you manage students, courses, and classrooms efficiently.
@@ -15,16 +19,11 @@ const Hero = () => {
         {/* Adjusted the flexbox properties */}
         <div className="flex flex-row justify-center space-x-4 mt-6">
           <button className='bg-[#00df9a] w-[100px] rounded-md font-medium py-3 text-black hover:bg-[#00cf8a]'>
-            Students
-          </button>
-          <button className='bg-[#00df9a] w-[100px] rounded-md font-medium py-3 text-black hover:bg-[#00cf8a]'>
-            Classes
-          </button>
-          <button className='bg-[#00df9a] w-[100px] rounded-md font-medium py-3 text-black hover:bg-[#00cf8a]'>
-            Courses
+            Events
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };

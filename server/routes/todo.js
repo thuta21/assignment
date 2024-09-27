@@ -1,20 +1,19 @@
-import express from 'express'
+import express from 'express';
 import TodoController from '../controllers/TodoController.js';
+import { authenticateJWT } from '../middlewares/auth.js'; // Adjust the path as necessary
 
-const router = express.Router()
+const router = express.Router();
 
+// Public route
 router.get('/', (req, res) => {
-	return res.send('Hello World')
+    return res.send('Hello World');
 });
 
-router.get('/todos', TodoController.index);
+// Protected routes
+router.get('/todos', authenticateJWT, TodoController.index);
+router.get('/todo/:id', authenticateJWT, TodoController.show);
+router.post('/todos', authenticateJWT, TodoController.create);
+router.delete('/todo/:id', authenticateJWT, TodoController.destroy);
+router.put('/todo/:id/status', authenticateJWT, TodoController.statusUpdate);
 
-router.get('/todo/:id', TodoController.show);
-
-router.post('/todos', TodoController.create);
-
-router.delete('/todo/:id', TodoController.destroy);
-
-router.put('/todo/:id/status', TodoController.statusUpdate);
-
-export default router
+export default router;
