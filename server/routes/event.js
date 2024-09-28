@@ -1,7 +1,7 @@
 import express from 'express';
 import EventController from '../controllers/EventController.js';
 import { authenticateJWT } from '../middlewares/auth.js';
-import { upload } from '../middlewares/multer.js';  // Import the multer configuration
+import { upload } from '../middlewares/multer.js';
 
 const router = express.Router();
 

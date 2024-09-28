@@ -1,21 +1,18 @@
-// middleware/multer.js
 import multer from 'multer';
 import path from 'path';
 
-// Configure multer to save files in the 'uploads/' directory
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/uploads');  // Save images to the 'uploads' folder
+    cb(null, 'public/uploads');
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));  // Rename the file to prevent conflicts
+    cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 
-// Initialize multer with the defined storage configuration
 export const upload = multer({
   storage: storage,
-  limits: { fileSize: 1024 * 1024 * 5 },  // Limit the file size to 5MB
+  limits: { fileSize: 1024 * 1024 * 5 },
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif/;
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());

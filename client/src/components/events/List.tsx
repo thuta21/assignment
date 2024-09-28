@@ -75,7 +75,7 @@ const EventList = () => {
           onClick: async () => {
             try {
               const token = localStorage.getItem('token');
-              await axios.delete(`http://localhost:3000/api/event/${id}`, {
+              await axios.delete(`http://localhost:3000/api/events/${id}`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },

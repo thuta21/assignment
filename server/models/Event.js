@@ -1,6 +1,6 @@
 import { sequelize } from '../config/database.js';
 import { DataTypes } from 'sequelize';
-import Organizer from './Organizer.js';  // Import the Organizer model
+import Organizer from './Organizer.js';
 
 const Event = sequelize.define('event', {
   title: {
@@ -15,15 +15,15 @@ const Event = sequelize.define('event', {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  images: {  // New images column
-    type: DataTypes.STRING,  // Store image path as a string
+  images: {
+    type: DataTypes.STRING,
     allowNull: true,
   },
   location: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  organizerId: {  // Reference to the Organizer model
+  organizerId: {
     type: DataTypes.INTEGER,
     references: {
       model: Organizer,
@@ -33,7 +33,6 @@ const Event = sequelize.define('event', {
   }
 });
 
-// Define association: An Event belongs to an Organizer
 Event.belongsTo(Organizer, { foreignKey: 'organizerId' });
 
 export default Event;

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 interface AuthContextType {
-  user: any; // Replace 'any' with a specific user type if you know the structure
+  user: any;
   login: (data: { token: string, organizer: any }) => void;
   logout: () => void;
   loading: boolean;
@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         console.error('Failed to parse stored user', err);
       }
     }
-    setLoading(false); // Once user data is retrieved, set loading to false
+    setLoading(false);
   }, []);
 
   const login = (data: { token: string, organizer: any }) => {
