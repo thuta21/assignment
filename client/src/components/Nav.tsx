@@ -13,10 +13,10 @@ const Navigation = () => {
 
   return (
     <nav className="bg-gray-800 text-white py-4 shadow-lg">
-      <div className="container mx-auto flex items-center justify-between px-4">
+      <div className="container mx-auto flex items-center justify-between">
 
         {/* Left-side link */}
-        <div className="flex-1">
+        <div className="flex">
           <Link to="/" className="text-white hover:text-gray-300 font-semibold text-lg">
             Event Management
           </Link>
@@ -46,7 +46,7 @@ const Navigation = () => {
         </div>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex-1 lg:flex lg:justify-center">
+        <div className="hidden lg:flex lg:justify-center">
           <ul className="flex space-x-8">
             <li>
               <Link to="/organizers" className="text-white hover:text-gray-300 text-lg">

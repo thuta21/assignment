@@ -6,7 +6,7 @@ export const authenticateJWT = (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(' ')[1]; // Assuming "Bearer <token>"
 
-    jwt.verify(token, 'your_secret_key', (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
       if (err) {
         return res.status(403).json({ message: 'Invalid token' });
       }

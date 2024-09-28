@@ -39,8 +39,8 @@ const login = async (req, res) => {
     // Generate JWT token
     const token = jwt.sign(
       { id: organizer.id, email: organizer.email },
-      'your_secret_key',
-      { expiresIn: '1h' }
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: '12h' }
     );
 
     // Return both token and organizer details (excluding sensitive fields like password)

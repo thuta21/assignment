@@ -1,3 +1,4 @@
+import Attendee from '../models/Attendee.js';
 import Event from '../models/Event.js';
 import { body, validationResult } from 'express-validator';
 
@@ -37,13 +38,6 @@ const create = async (req, res) => {
 };
 
 const index = async (req, res) => {
-  console.log('start');
-
-  console.log(process.env.BASE_URL);
-
-  console.log('end');
-
-
   try {
     const events = await Event.findAll();
 
@@ -138,4 +132,43 @@ const destroy = async (req, res) => {
   }
 };
 
-export default { create, index, show, update, destroy };
+const invitationLink = async (req, res) => {
+  try {
+    const event = await Event.findByPk(req.params.id);
+    if (!event) {
+      return res.status(404).json({ error: 'Event not found' });
+    }
+
+    const eventWithImageUrl = {
+      ...event.toJSON(),
+      imageUrl: `${process.env.BASE_URL}/uploads/${event.images}`, // Adjust this path as necessary
+    };
+    res.status(200).json(eventWithImageUrl);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve event' });
+  }
+};
+
+const registerAttendee = async (req, res) => {
+  const { name, email } = req.body;
+  const eventId = req.params.id;
+
+  try {
+    const event = await Event.findByPk(eventId);
+    if (!event) {
+      return res.status(404).json({ error: 'Event not found' });
+    }
+
+    const attendee = await Attendee.create({
+      name,
+      email,
+      eventId,
+    });
+
+    res.status(201).json({ message: 'Successfully registered', attendee });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to register attendee' });
+  }
+};
+
+export default { create, index, show, update, destroy, invitationLink, registerAttendee };

@@ -13,10 +13,6 @@ const Attendee = sequelize.define('attendee', {
       isEmail: true,
     },
   },
-  phone: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
   eventId: {
     type: DataTypes.INTEGER,
     references: {

@@ -8,6 +8,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaShareAlt } from 'react-icons/fa';
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
@@ -35,6 +36,34 @@ const EventList = () => {
 
     fetchEvents();
   }, []);
+
+  const handleShareLink = (eventId) => {
+    const baseUrl = window.location.origin;  // Automatically gets the base URL
+    const inviteLink = `${baseUrl}/events/${eventId}/invite`;
+
+    navigator.clipboard.writeText(inviteLink).then(() => {
+      toast.success('Invite link copied to clipboard!', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }).catch((error) => {
+      toast.error('Failed to copy invite link!', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.error('Error copying invite link:', error);
+    });
+  };
 
   const handleDelete = (id) => {
     confirmAlert({
@@ -146,8 +175,8 @@ const EventList = () => {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr>
-                    <th className="border-b-2 p-2 text-sm font-semibold text-gray-700">Image</th>
                     <th className="border-b-2 p-2 text-sm font-semibold text-gray-700">ID</th>
+                    <th className="border-b-2 p-2 text-sm font-semibold text-gray-700">Image</th>
                     <th className="border-b-2 p-2 text-sm font-semibold text-gray-700">Title</th>
                     <th className="border-b-2 p-2 text-sm font-semibold text-gray-700">Location</th>
                     <th className="border-b-2 p-2 text-sm font-semibold text-gray-700">Date</th>
@@ -157,6 +186,7 @@ const EventList = () => {
                 <tbody>
                   {currentEvents.map(event => (
                     <tr key={event.id}>
+                      <td className="border-b p-2">{event.id}</td>
                       <td className="border-b p-2">
                         {event.images && (
                           <img
@@ -166,12 +196,16 @@ const EventList = () => {
                           />
                         )}
                       </td>
-                      <td className="border-b p-2">{event.id}</td>
                       <td className="border-b p-2">{event.title}</td>
                       <td className="border-b p-2">{event.location}</td>
                       <td className="border-b p-2">{new Date(event.date).toLocaleDateString()}</td>
                       <td className="border-b p-2 space-x-2">
-                        <Link to={`/event/${event.id}/edit`}>
+                        <Link to={`/events/${event.id}`}>
+                          <button className="text-green-500 hover:text-green-700">
+                            <FaEye />
+                          </button>
+                        </Link>
+                        <Link to={`/events/${event.id}/edit`}>
                           <button className="text-blue-500 hover:text-blue-700">
                             <FaEdit />
                           </button>
@@ -182,11 +216,12 @@ const EventList = () => {
                         >
                           <FaTrashAlt />
                         </button>
-                        <Link to={`/event/${event.id}`}>
-                          <button className="text-green-500 hover:text-green-700">
-                            <FaEye />
-                          </button>
-                        </Link>
+                        <button
+                          onClick={() => handleShareLink(event.id)}
+                          className="text-gray-500 hover:text-gray-700"
+                        >
+                          <FaShareAlt />
+                        </button>
                       </td>
                     </tr>
                   ))}

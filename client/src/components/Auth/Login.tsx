@@ -41,7 +41,6 @@ const LoginForm = () => {
           localStorage.setItem('token', data.token);
         }
 
-        console.log('Login successful:', data);
         navigate('/'); // Redirect to the home page
       } catch (err) {
         setError(err.message || 'Login failed');

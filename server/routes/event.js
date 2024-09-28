@@ -5,10 +5,13 @@ import { upload } from '../middlewares/multer.js';  // Import the multer configu
 
 const router = express.Router();
 
-router.get('/events',authenticateJWT, EventController.index);
-router.post('/events', authenticateJWT, upload.single('image'), EventController.create);
-router.get('/event/:id',authenticateJWT, EventController.show);
-router.put('/event/:id', authenticateJWT, upload.single('image'), EventController.update);
-router.delete('/event/:id', authenticateJWT, EventController.destroy);
+router.get('/',authenticateJWT, EventController.index);
+router.post('/', authenticateJWT, upload.single('image'), EventController.create);
+router.get('/:id',authenticateJWT, EventController.show);
+router.put('/:id', authenticateJWT, upload.single('image'), EventController.update);
+router.delete('/:id', authenticateJWT, EventController.destroy);
+
+router.get('/:id/invite', EventController.invitationLink);
+router.post('/:id/register', EventController.registerAttendee);
 
 export default router;

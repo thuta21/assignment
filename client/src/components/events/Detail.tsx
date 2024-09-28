@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'; // Import useHistory
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const navigate = useNavigate(); // Initialize navigate
+
   useEffect(() => {
     const fetchEvent = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:3000/api/event/${id}`, {
+        const response = await axios.get(`http://localhost:3000/api/events/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -61,8 +64,11 @@ const EventDetail = () => {
           </div>
 
           <div className="flex justify-end">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-              Yes (5 slots remaining)
+            <button
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              onClick={() => navigate('/')}
+            >
+              Back to Events
             </button>
           </div>
         </div>

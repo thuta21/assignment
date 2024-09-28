@@ -44,7 +44,6 @@ const EventCreate = () => {
             },
           }
         );
-        console.log('New event created:', response.data);
         navigate('/events'); // Redirect to the events listing page
       } catch (error) {
         console.error('Error creating event:', error);
