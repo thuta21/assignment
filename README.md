@@ -1,6 +1,6 @@
-# Classroom Management System
+# Event Management System
 
-This project is a simple classroom management system built with React.js for the frontend and Node.js with Express for the backend. It allows users to manage students, courses, and classrooms with basic CRUD functionalities.
+This project is a simple event management system built with React.js for the frontend and Node.js with Express for the backend. It allows users to manage organizers, events, and attendees with basic CRUD functionalities.
 
 ## Getting Started
 
