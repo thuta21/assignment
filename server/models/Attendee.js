@@ -15,6 +15,10 @@ const Attendee = sequelize.define('attendee', {
   },
   eventId: {
     type: DataTypes.INTEGER,
+    references: {
+      model: 'events', // Name of the event table
+      key: 'id',
+    },
     allowNull: false,
   }
 });

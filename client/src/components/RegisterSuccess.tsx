@@ -9,14 +9,6 @@ const RegisterSuccess: React.FC = () => {
         <p className="text-gray-600 mb-6">
           Thank you for registering for the event. You will receive an email with further details shortly.
         </p>
-
-        <div className="flex justify-center">
-          <Link to="/events">
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-              Back to Events
-            </button>
-          </Link>
-        </div>
       </div>
     </div>
   );
